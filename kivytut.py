@@ -3,12 +3,15 @@ kivy.require('1.10.1')
 
 from kivy.app import App
 from kivy.uix.button import Label
+from kivy.uix.button import Button
+from kivy.uix.widget import Widget
 
-class HelloKivy(App):
+class CustomWidget(Widget):
+    pass
+class CustomWidgetApp(App):
 
     def build(self):
-        return Label(text="HelloKivy")
+        return CustomWidget()
 
-
-helloKivy = HelloKivy()
-helloKivy.run()
+CustomWidget = CustomWidgetApp()
+CustomWidget.run()
