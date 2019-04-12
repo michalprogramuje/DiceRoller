@@ -19,11 +19,13 @@ def analyze_result(result, count1=0, count2=0, count3=0, count4=0, count5=0, cou
     print("Liczba 1: ", count1, "\nLiczba 2: ", count2, "\nLiczba 3: ", count3, "\nLiczba 4: ", count4, "\nLiczba 5: ",
           count5, "\nLiczba 6: ", count6)
 def reroll(whatreroll, result):
-    howmany=0
-    for i in result:
-        if i in whatreroll:
-            howmany=howmany+1
+    for pos in range(len(result)):
+        if result[pos] in whatreroll:
+            result[pos] = random.randint(1, 6)
 result=[]
 roll(20,result)
 print(result)
+analyze_result(result)
+whatreroll=[1,2,3]
+reroll(whatreroll,result)
 analyze_result(result)
