@@ -37,13 +37,3 @@ def addtowhatreroll(whatreroll):
 def howmanydices():
     dices=int(input('Iloma kostkami rzucasz?'))
     return dices
-
-dices=howmanydices()
-result=[]
-roll(dices,result)
-print(result)
-analyze_result(result)
-whatreroll=[]
-addtowhatreroll(whatreroll)
-reroll(whatreroll,result)
-analyze_result(result)
