@@ -7,22 +7,27 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from rolls import roll
-
+from rolls import searchfor
+from rolls import analyze_result
 class Grid(GridLayout):
     def __init__(self, **kwargs):
         super(Grid, self).__init__(**kwargs)
-        self.cols = 1
+        self.cols = 2
 
         self.inside = GridLayout()
         self.inside.cols=2
 
-        self.inside.add_widget(Label(text="Hi"))
-        self.howmany = TextInput(multiline=False)
-        self.inside.add_widget(self.howmany)
+        self.inside.add_widget(Label(text="Ile kostek?"))
+        self.dices = TextInput(multiline=False)
+        self.inside.add_widget(self.dices)
 
-        self.inside.add_widget(Label(text="Hi"))
-        self.name = TextInput(multiline=False)
-        self.inside.add_widget(self.name)
+        self.inside.add_widget(Label(text="ToHit"))
+        self.tohit = TextInput(multiline=False)
+        self.inside.add_widget(self.tohit)
+
+        self.inside.add_widget(Label(text="ToWound"))
+        self.towound = TextInput(multiline=False)
+        self.inside.add_widget(self.towound)
 
         self.add_widget(self.inside)
 
@@ -31,13 +36,33 @@ class Grid(GridLayout):
         self.add_widget(self.submit)
 
     def pressed(self, instance):
-        howmany = self.howmany.text
-        name = self.name.text
-        roll(int(howmany),lista)
+        dices = self.dices.text
+        tohit = self.tohit.text
+        towound = self.towound.text
+        roll(int(dices),lista)
         print(lista)
-        self.name.text= ""
-        self.howmany.text= ""
+        analyze_result(lista)
+        emptylist = []
+        listapo=searchfor(int(tohit),lista, emptylist)
+        print(listapo)
+        print(len(listapo))
+        analyze_result(listapo)
+        roll(len(listapo),lista2)
+        print(listapo)
+        print(lista2)
+        emptylist=[]
+        listapo2=searchfor(int(towound),lista2, emptylist)
+        print(listapo2)
+        #print(len(listapo2))
+        #analyze_result(listapo2)
+        self.tohit.text= ""
+        self.dices.text= ""
+        self.towound.text= ""
 lista=[]
+lista2=[]
+listapo=[]
+listapo2=[]
+emptylist=[]
 class DiceRoller(App):
 
     def build(self):

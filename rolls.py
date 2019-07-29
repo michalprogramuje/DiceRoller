@@ -34,6 +34,12 @@ def addtowhatreroll(whatreroll):
             print("powtorka")
         else:
             break
-def howmanydices():
-    dices=int(input('Iloma kostkami rzucasz?'))
-    return dices
+
+
+def searchfor(successroll ,list, emptylist):
+    for i in list:
+        if successroll<=i:
+            emptylist.append(i)
+    return emptylist
+
+
